@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Affirm::VERSION
   spec.authors       = ["Yury Velikanau"]
   spec.email         = ["yury.velikanau@gmail.com"]
-  spec.homepage      = ""
   spec.summary       = %q{Ruby API wrapper for Affirm.com}
   spec.description   = %q{Ruby API wrapper for Affirm.com}
+  spec.homepage      = "https://github.com/spectator/affirm"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
