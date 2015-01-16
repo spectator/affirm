@@ -15,6 +15,10 @@ RSpec.describe Affirm::Client do
       end
     end
 
+    it "sets json content type" do
+      expect(subject.connection.headers["Content-Type"]).to eq("application/json")
+    end
+
     it "sets basic auth header" do
       expect(subject.connection.headers["Authorization"]).to eq("Basic YWJjOnh5eg==")
     end

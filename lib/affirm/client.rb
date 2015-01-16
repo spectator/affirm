@@ -5,8 +5,9 @@ module Affirm
     attr_reader :connection
 
     def initialize
-      @url_prefix = "api/v2"
+      @url_prefix = "/api/v2"
       @connection = Faraday.new.tap do |conn|
+        conn.headers[:content_type] = "application/json"
         conn.basic_auth(basic_auth_user, basic_auth_password)
       end
     end
