@@ -49,7 +49,7 @@ RSpec.describe Affirm::Configuration do
     end
 
     it "sets endpoint to production" do
-      expect(Affirm.configuration.endpoint).to eq("https://affirm.com/api/v2")
+      expect(Affirm.configuration.endpoint).to eq("https://affirm.com")
     end
   end
 
@@ -65,7 +65,7 @@ RSpec.describe Affirm::Configuration do
     end
 
     it "sets endpoint to sandbox" do
-      expect(Affirm.configuration.endpoint).to eq("https://sandbox.affirm.com/api/v2")
+      expect(Affirm.configuration.endpoint).to eq("https://sandbox.affirm.com")
     end
   end
 

@@ -14,7 +14,7 @@ module Affirm
     end
 
     def endpoint
-      "https://#{ENDPOINTS[environment]}/api/v2"
+      "https://#{ENDPOINTS[environment]}"
     end
   end
 
