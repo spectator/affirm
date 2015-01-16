@@ -25,4 +25,33 @@ RSpec.describe Affirm::Client do
       expect(subject.connection.headers["Authorization"]).to eq("Basic YWJjOnh5eg==")
     end
   end
+
+  context "post request" do
+    let(:stubs) do
+      Faraday::Adapter::Test::Stubs.new do |stub|
+        stub.post("/api/v2/foo") { [200, {}, nil] }
+      end
+    end
+
+    before do
+      subject.connection.adapter(:test, stubs)
+    end
+
+    it "makes request to full url" do
+      response = subject.post("foo")
+      expect(response.env.url.to_s).to eq("https://affirm.com/api/v2/foo")
+    end
+
+    it "makes request to specified path with no leading slash specified" do
+      expect(subject.post("foo")).to be_success
+    end
+
+    it "makes request to specified path with leading slash specified" do
+      expect(subject.post("/foo")).to be_success
+    end
+
+    it "makes request with json data" do
+      expect(subject.post("/foo", { key: "value" })).to be_success
+    end
+  end
 end

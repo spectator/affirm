@@ -10,12 +10,17 @@ module Affirm
 
     def initialize
       @url_prefix = "/api/v2"
-      @connection = Faraday.new do |conn|
+      @connection = Faraday.new(Affirm.configuration.endpoint) do |conn|
         conn.basic_auth(basic_auth_user, basic_auth_password)
         conn.request  :json
         conn.response :json, content_type: /\bjson$/
         conn.adapter  Faraday.default_adapter
       end
+    end
+
+    def post(path, **data)
+      normalized_path = url_prefix + normalize_path(path)
+      connection.post(normalized_path, data)
     end
 
     private
@@ -26,6 +31,10 @@ module Affirm
 
     def basic_auth_password
       Affirm.configuration.private_api_key
+    end
+
+    def normalize_path(path)
+      Faraday::Utils.normalize_path(path)
     end
   end
 end
