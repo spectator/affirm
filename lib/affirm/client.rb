@@ -5,6 +5,9 @@ module Affirm
   class Client
     attr_reader :connection
 
+    attr_reader :url_prefix
+    private :url_prefix
+
     def initialize
       @url_prefix = "/api/v2"
       @connection = Faraday.new do |conn|
@@ -16,8 +19,6 @@ module Affirm
     end
 
     private
-
-    attr_reader :url_prefix
 
     def basic_auth_user
       Affirm.configuration.public_api_key
