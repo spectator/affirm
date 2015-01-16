@@ -1,4 +1,5 @@
 require "faraday"
+require "faraday_middleware"
 
 module Affirm
   class Client
@@ -6,9 +7,11 @@ module Affirm
 
     def initialize
       @url_prefix = "/api/v2"
-      @connection = Faraday.new.tap do |conn|
-        conn.headers[:content_type] = "application/json"
+      @connection = Faraday.new do |conn|
         conn.basic_auth(basic_auth_user, basic_auth_password)
+        conn.request  :json
+        conn.response :json, content_type: /\bjson$/
+        conn.adapter  Faraday.default_adapter
       end
     end
 

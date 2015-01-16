@@ -15,8 +15,10 @@ RSpec.describe Affirm::Client do
       end
     end
 
-    it "sets json content type" do
-      expect(subject.connection.headers["Content-Type"]).to eq("application/json")
+    it "sets json handlers" do
+      expect(
+        subject.connection.builder.handlers
+      ).to include(FaradayMiddleware::EncodeJson, FaradayMiddleware::ParseJson)
     end
 
     it "sets basic auth header" do
