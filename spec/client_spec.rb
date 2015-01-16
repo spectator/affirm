@@ -1,8 +1,6 @@
 require "helper"
 
 RSpec.describe Affirm::Client do
-  before { Faraday.default_adapter = :test }
-
   context "new instance" do
     it "creates Faraday connection" do
       expect(subject.connection).to be_an_instance_of(Faraday::Connection)
