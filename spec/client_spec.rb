@@ -27,18 +27,18 @@ RSpec.describe Affirm::Client do
   end
 
   context "post request" do
-    let(:stubs) do
-      Faraday::Adapter::Test::Stubs.new do |stub|
+    before(:all) do
+      @stubs = Faraday::Adapter::Test::Stubs.new do |stub|
         stub.post("/api/v2/foo") { [200, {}, ""] }
         stub.post("/api/v2/bar", '{"key":"value"}') { [200, {}, ""] }
       end
     end
 
-    after(:all) { stubs.verify_stubbed_calls }
+    after(:all) { @stubs.verify_stubbed_calls }
 
     before do
       subject.connection.builder.handlers.pop
-      subject.connection.adapter(:test, stubs)
+      subject.connection.adapter(:test, @stubs)
     end
 
     it "makes request to full url" do
