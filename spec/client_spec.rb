@@ -29,16 +29,20 @@ RSpec.describe Affirm::Client do
   context "post request" do
     let(:stubs) do
       Faraday::Adapter::Test::Stubs.new do |stub|
-        stub.post("/api/v2/foo") { [200, {}, nil] }
+        stub.post("/api/v2/foo") { [200, {}, ""] }
+        stub.post("/api/v2/bar", '{"key":"value"}') { [200, {}, ""] }
       end
     end
 
+    after(:all) { stubs.verify_stubbed_calls }
+
     before do
+      subject.connection.builder.handlers.pop
       subject.connection.adapter(:test, stubs)
     end
 
     it "makes request to full url" do
-      response = subject.post("foo")
+      response = subject.post("foo", {})
       expect(response.env.url.to_s).to eq("https://affirm.com/api/v2/foo")
     end
 
@@ -51,7 +55,7 @@ RSpec.describe Affirm::Client do
     end
 
     it "makes request with json data" do
-      expect(subject.post("/foo", { key: "value" })).to be_success
+      expect(subject.post("/bar", { key: "value" })).to be_success
     end
   end
 end
