@@ -8,6 +8,12 @@ module Affirm
     attr_reader :url_prefix
     private :url_prefix
 
+    class << self
+      def request(method, path, **data)
+        new.public_send(method, path, data)
+      end
+    end
+
     def initialize
       @url_prefix = "/api/v2"
       @connection = Faraday.new(Affirm.configuration.endpoint) do |conn|
