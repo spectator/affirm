@@ -1,3 +1,5 @@
+require "faraday"
+require "faraday_middleware"
 require "affirm/client"
 require "affirm/configuration"
 require "affirm/version"

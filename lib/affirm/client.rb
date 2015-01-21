@@ -1,6 +1,3 @@
-require "faraday"
-require "faraday_middleware"
-
 module Affirm
   class Client
     attr_reader :connection
