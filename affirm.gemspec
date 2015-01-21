@@ -21,4 +21,5 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = "~> 2.0"
   spec.add_dependency "faraday", "~> 0.9.1"
   spec.add_dependency "faraday_middleware", "~> 0.9.1"
+  spec.add_dependency "virtus", "~> 1.0.0"
 end
