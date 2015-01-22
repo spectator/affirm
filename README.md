@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/spectator/affirm.png?branch=master)](http://travis-ci.org/spectator/affirm)
+[![Build Status](https://travis-ci.org/spectator/affirm.svg?branch=master)](http://travis-ci.org/spectator/affirm)
 
 # Affirm
 
