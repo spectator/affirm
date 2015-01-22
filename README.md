@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/spectator/affirm.svg?branch=master)](http://travis-ci.org/spectator/affirm)
+[![Code Climate](https://codeclimate.com/github/spectator/affirm/badges/gpa.svg)](https://codeclimate.com/github/spectator/affirm)
 
 # Affirm
 
