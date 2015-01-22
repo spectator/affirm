@@ -45,25 +45,25 @@ Affirm::Charge.authorize(checkout_token)
 The rest of the API uses `charge_id` which is received as `id` after charge is
 authorized.
 
-### Capture charge
+#### Capture charge
 
 ```ruby
 Affirm::Charge.capture("TEST-ALO4-UVGR")
 ```
 
-### Void charge
+#### Void charge
 
 ```ruby
 Affirm::Charge.void("TEST-ALO4-UVGR")
 ```
 
-### Refund charge
+#### Refund charge
 
 ```ruby
 Affirm::Charge.refund("TEST-ALO4-UVGR", amount: 500)
 ```
 
-### Update charge
+#### Update charge
 
 ```ruby
 Affirm::Charge.update("TEST-ALO4-UVGR",
@@ -81,7 +81,7 @@ The same will happen for all successful responses described (not in full) in
 [server integration](http://docs.affirm.com/v2/api/charges/#authentication)
 guide.
 
-### Example
+#### Example
 
 ```ruby
 response = Affirm::Charge.authorize(checkout_token)
