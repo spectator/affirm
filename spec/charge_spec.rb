@@ -131,6 +131,7 @@ RSpec.describe Affirm::Charge do
         full
         first
         last
+        middle
       ).each do |method|
         it "details.billing.name.#{method}" do
           expect(
@@ -143,6 +144,7 @@ RSpec.describe Affirm::Charge do
         full
         first
         last
+        middle
       ).each do |method|
         it "details.shipping.name.#{method}" do
           expect(
