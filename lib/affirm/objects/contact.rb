@@ -1,6 +1,6 @@
 module Affirm
   module Objects
-    class Client
+    class Contact
       include Virtus.model
 
       attribute :full,   String

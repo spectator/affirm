@@ -3,7 +3,7 @@ module Affirm
     class Billing
       include Virtus.model
 
-      attribute :name, Client
+      attribute :name, Contact
     end
   end
 end

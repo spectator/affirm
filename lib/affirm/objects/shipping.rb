@@ -3,7 +3,7 @@ module Affirm
     class Shipping
       include Virtus.model
 
-      attribute :name,    Client
+      attribute :name,    Contact
       attribute :address, Address
     end
   end
