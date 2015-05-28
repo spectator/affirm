@@ -5,5 +5,5 @@ gemspec
 
 gem "bundler", "~> 1.7"
 gem "rake",    "~> 10.0"
-gem "rspec",   "~> 3.1.0"
+gem "rspec",   "~> 3.2.0"
 gem "byebug"
