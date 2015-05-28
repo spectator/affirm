@@ -21,9 +21,12 @@ module Affirm
       end
     end
 
+    def get(path, **data)
+      connection.get(normalized_path(path), data)
+    end
+
     def post(path, **data)
-      normalized_path = url_prefix + normalize_path(path)
-      connection.post(normalized_path, data)
+      connection.post(normalized_path(path), data)
     end
 
     private
@@ -34,6 +37,10 @@ module Affirm
 
     def basic_auth_password
       Affirm.configuration.private_api_key
+    end
+
+    def normalized_path(path)
+      url_prefix + normalize_path(path)
     end
 
     def normalize_path(path)

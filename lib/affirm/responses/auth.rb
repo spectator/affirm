@@ -4,6 +4,7 @@ module Affirm
       include Virtus.model
 
       attribute :id,            String
+      attribute :status,        String
       attribute :user_id,       String
       attribute :currency,      String
       attribute :amount,        Integer

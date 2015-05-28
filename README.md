@@ -45,6 +45,12 @@ Affirm::Charge.authorize(checkout_token)
 The rest of the API uses `charge_id` which is received as `id` after charge is
 authorized.
 
+#### Read charge
+
+```ruby
+Affirm::Charge.find("TEST-AL04-UVGR")
+```
+
 #### Capture charge
 
 ```ruby
