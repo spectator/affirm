@@ -1,4 +1,5 @@
 require "helper"
+require_relative "charge_object_interface"
 
 RSpec.describe Affirm::Charge do
   let(:failed_response) { double(:response, success?: false, body: Hash.new) }
@@ -39,134 +40,47 @@ RSpec.describe Affirm::Charge do
           .and_return(successful_response)
       end
 
-      %w(
-        id
-        user_id
-        currency
-        amount
-        auth_hold
-        payable
-        pending
-        void
-        under_dispute
-      ).each do |method|
-        it method do
-          expect(subject.public_send(method)).to eq(body[method])
-        end
+      it_behaves_like "a charge object interface"
+    end
+  end
+
+  context "find" do
+    context "with failed response" do
+      subject { described_class }
+
+      before do
+        expect(Affirm::Client).to receive(:request)
+          .with(:get, "charges/1")
+          .and_return(failed_response)
       end
 
-      it "created" do
+      it "returns failure object" do
         expect(
-          to_seconds(subject.created)
-        ).to eq(to_seconds(body["created"]))
+          subject.find(1)
+        ).to be_an_instance_of(Affirm::FailureResult)
+      end
+    end
+
+    context "with successful response" do
+      subject { described_class.find("ABC") }
+
+      let(:body) do
+        JSON.load(
+          File.read(File.expand_path("../fixtures/auth.json", __FILE__))
+        )
       end
 
-      it "expires" do
-        expect(
-          to_seconds(subject.expires)
-        ).to eq(to_seconds(body["expires"]))
+      let(:successful_response) do
+        double(:response, success?: true, body: body)
       end
 
-      %w(
-        id
-        transaction_id
-        currency
-        amount
-        type
-      ).each do |method|
-        it "events.#{method}" do
-          expect(
-            subject.events.first.public_send(method)
-          ).to eq(body["events"].first[method])
-        end
+      before do
+        expect(Affirm::Client).to receive(:request)
+          .with(:get, "charges/ABC")
+          .and_return(successful_response)
       end
 
-      it "events.created" do
-        expect(
-          to_seconds(subject.events.first.created)
-        ).to eq(to_seconds(body["events"].first["created"]))
-      end
-
-      %w(
-        currency
-        tax_amount
-        shipping_amount
-        total
-      ).each do |method|
-        it "details.#{method}" do
-          expect(
-            subject.details.public_send(method)
-          ).to eq(body["details"][method])
-        end
-      end
-
-      %w(
-        discount_display_name
-        discount_amount
-      ).each do |method|
-        it "details.discounts.#{method}" do
-          expect(
-            subject.details.discounts["discount_name"].public_send(method)
-          ).to eq(body["details"]["discounts"]["discount_name"][method])
-        end
-      end
-
-      %w(
-        sku
-        display_name
-        unit_price
-        qty
-        item_type
-        item_url
-        item_image_url
-      ).each do |method|
-        it "details.items.#{method}" do
-          expect(
-            subject.details.items["ABC-123"].public_send(method)
-          ).to eq(body["details"]["items"]["ABC-123"][method])
-        end
-      end
-
-      %w(
-        full
-        first
-        last
-        middle
-      ).each do |method|
-        it "details.billing.name.#{method}" do
-          expect(
-            subject.details.billing.name.public_send(method)
-          ).to eq(body["details"]["billing"]["name"][method])
-        end
-      end
-
-      %w(
-        full
-        first
-        last
-        middle
-      ).each do |method|
-        it "details.shipping.name.#{method}" do
-          expect(
-            subject.details.shipping.name.public_send(method)
-          ).to eq(body["details"]["shipping"]["name"][method])
-        end
-      end
-
-      %w(
-       line1
-       line2
-       city
-       state
-       zipcode
-       country
-      ).each do |method|
-        it "details.shipping.address.#{method}" do
-          expect(
-            subject.details.shipping.address.public_send(method)
-          ).to eq(body["details"]["shipping"]["address"][method])
-        end
-      end
+      it_behaves_like "a charge object interface"
     end
   end
 

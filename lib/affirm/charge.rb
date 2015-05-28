@@ -6,6 +6,10 @@ module Affirm
       respond Client.request(:post, "charges", checkout_token: token)
     end
 
+    def find(charge_id)
+      respond Client.request(:get, "charges/#{charge_id}")
+    end
+
     def capture(charge_id)
       respond Client.request(:post, "charges/#{charge_id}/capture")
     end
