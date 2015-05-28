@@ -1,6 +1,7 @@
 RSpec.shared_examples "a charge object interface" do
   %w(
     id
+    status
     user_id
     currency
     amount
