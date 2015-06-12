@@ -43,7 +43,7 @@ RSpec.describe Affirm::Client do
 
     it "makes request to full url" do
       response = subject.post("foo", {})
-      expect(response.env.url.to_s).to eq("https://affirm.com/api/v2/foo")
+      expect(response.env.url.to_s).to eq("https://api.affirm.com/api/v2/foo")
     end
 
     it "makes request to specified path with no leading slash specified" do
@@ -76,7 +76,7 @@ RSpec.describe Affirm::Client do
 
     it "makes request to full url" do
       response = subject.get("foo", {})
-      expect(response.env.url.to_s).to eq("https://affirm.com/api/v2/foo")
+      expect(response.env.url.to_s).to eq("https://api.affirm.com/api/v2/foo")
     end
 
     it "makes request to specified path with no leading slash specified" do

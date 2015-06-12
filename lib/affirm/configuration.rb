@@ -5,7 +5,7 @@ module Affirm
     attr_accessor :environment
 
     ENDPOINTS = {
-      production: "affirm.com",
+      production: "api.affirm.com",
       sandbox:    "sandbox.affirm.com"
     }
 
