@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'affirm/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "affirm"
+  spec.name          = "affirm-ruby"
   spec.version       = Affirm::VERSION
   spec.authors       = ["Yury Velikanau"]
   spec.email         = ["yury.velikanau@gmail.com"]
