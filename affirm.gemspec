@@ -6,7 +6,7 @@ require 'affirm/version'
 Gem::Specification.new do |spec|
   spec.name          = "affirm-ruby"
   spec.version       = Affirm::VERSION
-  spec.authors       = ["Yury Velikanau"]
+  spec.authors       = ["Yury Velikanau", "Igor Pstyga"]
   spec.email         = ["yury.velikanau@gmail.com"]
   spec.summary       = %q{Ruby wrapper for Affirm.com API}
   spec.description   = %q{Ruby client library for Affirm.com API}
