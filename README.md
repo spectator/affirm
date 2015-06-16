@@ -12,7 +12,7 @@ details.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'affirm'
+gem 'affirm-ruby', require: 'affirm'
 ```
 
 And then execute:
@@ -21,7 +21,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install affirm
+    $ gem install affirm-ruby
 
 ## Configuration
 
