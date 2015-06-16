@@ -1,10 +1,10 @@
 PATH
   remote: .
   specs:
-    affirm (0.0.1)
+    affirm-ruby (0.0.1)
       faraday (~> 0.9.1)
       faraday_middleware (~> 0.9.1)
-      virtus (~> 1.0.0)
+      virtus (~> 1.0, >= 1.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -13,18 +13,15 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    byebug (3.5.1)
-      columnize (~> 0.8)
-      debugger-linecache (~> 1.2)
-      slop (~> 3.6)
+    byebug (5.0.0)
+      columnize (= 0.9.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     columnize (0.9.0)
-    debugger-linecache (1.2.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
-    equalizer (0.0.9)
+    equalizer (0.0.11)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.1)
@@ -45,9 +42,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
-    slop (3.6.0)
-    thread_safe (0.3.4)
-    virtus (1.0.4)
+    thread_safe (0.3.5)
+    virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
@@ -57,7 +53,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  affirm!
+  affirm-ruby!
   bundler (~> 1.7)
   byebug
   rake (~> 10.0)
