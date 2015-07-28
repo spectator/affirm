@@ -54,18 +54,36 @@ RSpec.describe Affirm::Configuration do
   end
 
   context "when environment is set to sandbox" do
-    before do
-      Affirm.configure do |config|
-        config.environment = :sandbox
+    context "via string" do
+      before do
+        Affirm.configure do |config|
+          config.environment = 'sandbox'
+        end
+      end
+
+      it "sets environment to sandbox" do
+        expect(Affirm.configuration.environment).to eq(:sandbox)
+      end
+
+      it "sets endpoint to sandbox" do
+        expect(Affirm.configuration.endpoint).to eq("https://sandbox.affirm.com")
       end
     end
 
-    it "sets environment to sandbox" do
-      expect(Affirm.configuration.environment).to eq(:sandbox)
-    end
+    context "via symbol" do
+      before do
+        Affirm.configure do |config|
+          config.environment = :sandbox
+        end
+      end
 
-    it "sets endpoint to sandbox" do
-      expect(Affirm.configuration.endpoint).to eq("https://sandbox.affirm.com")
+      it "sets environment to sandbox" do
+        expect(Affirm.configuration.environment).to eq(:sandbox)
+      end
+
+      it "sets endpoint to sandbox" do
+        expect(Affirm.configuration.endpoint).to eq("https://sandbox.affirm.com")
+      end
     end
   end
 
