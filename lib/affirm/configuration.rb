@@ -2,7 +2,7 @@ module Affirm
   class Configuration
     attr_accessor :public_api_key
     attr_accessor :private_api_key
-    attr_accessor :environment
+    attr_reader :environment
 
     ENDPOINTS = {
       production: "api.affirm.com",
@@ -11,6 +11,10 @@ module Affirm
 
     def initialize
       @environment = :production
+    end
+
+    def environment=(env)
+      @environment = env.to_sym
     end
 
     def endpoint
