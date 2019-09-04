@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.102][] (2019-09-03)
+
+Fixes:
+
+  - Relax Faraday dependencies (peterberkenbosch in [#3](https://github.com/spectator/affirm/pull/3))
+
 ## [1.0.2][] (2015-07-28)
 
 Fixes:
