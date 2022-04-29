@@ -6,7 +6,7 @@ module Affirm
     private :url_prefix
 
     class << self
-      def request(method, path, **data)
+      def request(method, path, data={})
         new.public_send(method, path, data)
       end
     end
@@ -21,11 +21,11 @@ module Affirm
       end
     end
 
-    def get(path, **data)
+    def get(path, data={})
       connection.get(normalized_path(path), data)
     end
 
-    def post(path, **data)
+    def post(path, data={})
       connection.post(normalized_path(path), data)
     end
 
