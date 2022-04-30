@@ -4,13 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [1.1.3][] (2020-10-30)
+## [1.1.3][] (2022-04-29)
+
+Fixes:
+
+  - Fix error on Ruby 3 (embold-tyler in [#6](https://github.com/spectator/affirm/pull/6))
 
 ## [1.1.2][] (2021-10-30)
 
 Fixes:
 
-  - Relax Ruby requirement (embold-tyler in [#4](https://github.com/spectator/affirm/pull/4))
+  - Relax Ruby requirement (embold-tyler in [#5](https://github.com/spectator/affirm/pull/5))
 
 ## [1.1.0][] (2019-09-03)
 
