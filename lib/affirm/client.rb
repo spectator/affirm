@@ -14,7 +14,7 @@ module Affirm
     def initialize
       @url_prefix = "/api/v2"
       @connection = Faraday.new(Affirm.configuration.endpoint) do |conn|
-        conn.basic_auth(basic_auth_user, basic_auth_password)
+        conn.request :authorization, :basic, basic_auth_user, basic_auth_password
         conn.request  :json
         conn.response :json, content_type: /\bjson$/
         conn.adapter  Faraday.default_adapter
