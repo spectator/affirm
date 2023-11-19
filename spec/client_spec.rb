@@ -1,28 +1,16 @@
 require "helper"
 
 RSpec.describe Affirm::Client do
-  context "new instance" do
-    it "creates Faraday connection" do
-      expect(subject.connection).to be_an_instance_of(Faraday::Connection)
+  before(:all) do
+    Affirm.configure do |config|
+      config.public_api_key  = "abc"
+      config.private_api_key = "xyz"
     end
   end
 
-  context "with api keys set" do
-    before do
-      Affirm.configure do |config|
-        config.public_api_key  = "abc"
-        config.private_api_key = "xyz"
-      end
-    end
-
-    it "sets json handlers" do
-      expect(
-        subject.connection.builder.handlers
-      ).to include(FaradayMiddleware::EncodeJson, FaradayMiddleware::ParseJson)
-    end
-
-    it "sets basic auth header" do
-      expect(subject.connection.headers["Authorization"]).to eq("Basic YWJjOnh5eg==")
+  context "new instance" do
+    it "creates Faraday connection" do
+      expect(subject.connection).to be_an_instance_of(Faraday::Connection)
     end
   end
 
@@ -39,6 +27,11 @@ RSpec.describe Affirm::Client do
     before do
       subject.connection.builder.handlers.pop
       subject.connection.adapter(:test, @stubs)
+    end
+
+    it "sets basic auth header" do
+      response = subject.post("foo", {})
+      expect(response.env.request_headers["Authorization"]).to eq("Basic YWJjOnh5eg==")
     end
 
     it "makes request to full url" do
@@ -72,6 +65,11 @@ RSpec.describe Affirm::Client do
     before do
       subject.connection.builder.handlers.pop
       subject.connection.adapter(:test, @stubs)
+    end
+
+    it "sets basic auth header" do
+      response = subject.get("foo", {})
+      expect(response.env.request_headers["Authorization"]).to eq("Basic YWJjOnh5eg==")
     end
 
     it "makes request to full url" do

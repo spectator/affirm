@@ -266,9 +266,11 @@ RSpec.describe Affirm::Charge do
       before do
         expect(Affirm::Client).to receive(:request)
           .with(:post, "charges/1/update",
-            order_id: "XYZ-007",
-            shipping_carrier: "FedEx",
-            shipping_confirmation: "1ZX007")
+                {
+                  order_id: "XYZ-007",
+                  shipping_carrier: "FedEx",
+                  shipping_confirmation: "1ZX007"
+                })
           .and_return(failed_response)
       end
 
@@ -310,9 +312,11 @@ RSpec.describe Affirm::Charge do
       before do
         expect(Affirm::Client).to receive(:request)
           .with(:post, "charges/1/update",
-            order_id: "XYZ-007",
-            shipping_carrier: "FedEx",
-            shipping_confirmation: "1ZX007"
+                {
+                  order_id: "XYZ-007",
+                  shipping_carrier: "FedEx",
+                  shipping_confirmation: "1ZX007"
+                }
           )
           .and_return(successful_response)
       end
