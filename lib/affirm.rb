@@ -1,7 +1,6 @@
 require "forwardable"
 
 require "faraday"
-require "faraday_middleware"
 require "virtus"
 
 require "affirm/client"
